@@ -1,0 +1,33 @@
+body
+{
+    /* background-color: black; */
+    margin: 0;
+    padding: 0;
+}
+
+table
+{
+    height: 600px;
+    width: 600px;
+    border: 4px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+}
+tr td
+{
+    background-color: skyblue;
+    text-align: center;
+    border: 2px solid black;
+    font-size: 150%;
+    font-family: sans-serif;
+    
+}
+.vertical
+{
+    border-right: 4px solid black;
+}
+.horizontal
+{
+    border-bottom: 4px solid black;
+}
