@@ -37,9 +37,18 @@
             {
                 for($j = 0; $j < 9; $j++)
                 {
-                    $valid = getValid($i, $j, $possible);
-                    
-                    echo "$i, $j  =>";
+
+                    // getting horizonatally correct values
+                    $valid = horizontal($i, $j, $possible);
+                    echo "hor: $i, $j  =>";
+                    foreach ($valid as $key) {
+                        echo $key;
+                    };
+                    echo "<br>"; 
+
+                    // getting vertical correct values
+                    $valid = vertical($i, $j, $valid); 
+                    echo "ver: $i, $j  =>";
                     foreach ($valid as $key) {
                         echo $key;
                     };
@@ -48,6 +57,8 @@
                         $matrix[$i][$j] = $valid[array_rand($valid)];                        
                     }
                     echo "<br>";
+
+
                 }
                 echo "<br>";                
             }
@@ -55,14 +66,7 @@
 
 
 
-            function getValid($x, $y, $possible)
-            {
-                $valid = 0;
-                $valid = horizontal($x, $y, $possible);
-                $valid = vertical($x, $y, $valid);
 
-                return $valid;
-            }
             function horizontal($x, $y, $possible)
             {
                 global $matrix;
@@ -84,15 +88,35 @@
                 return $possible;
             }
             function vertical($x, $y, $possible)
-            {              
+            {    
+                global $matrix;
+                
+                $column = [];
+
+                for($i = 0; $i < 9; $i++)
+                {
+                    array_push($column, $matrix[$i][$y]);
+                }
+
+                foreach($column as $value)
+                {
+                    foreach($possible as $key=>$pos)
+                    {
+                        if($value == $pos)
+                        {
+                            unset($possible[$key]);  
+                        }
+                        
+                    }
+                }
+
                 return $possible;
             }
             function blockWise()
             {
             }
 
-
-
+            // loop for printing data in the form of table
             for($i = 0; $i < 9; $i++)
             {
                 if($i == 2 || $i == 5)
