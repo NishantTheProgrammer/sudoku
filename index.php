@@ -60,7 +60,22 @@
 
 
                 }
-                echo "<br>";                
+                echo "<br>";
+
+
+                // loop to fix some zero values in some cell
+                foreach($matrix[$i] as $cell)
+                {
+                    if($cell == 0)                      // checking if any value of row is zero
+                    {
+                        for($j = 0; $j < 9; $j++)
+                        {
+                            $matrix[$i][$j] = 0;        // set all the cells of row to zero 
+                        }  
+                        $i--;                           // place row pointer backword to one row
+                        break;     
+                    }
+                }              
             }
 
 
